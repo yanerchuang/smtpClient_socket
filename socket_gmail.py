@@ -5,8 +5,12 @@ import ssl
 msg = '\r\n Xin Chao!'
 endmsg = '\r\n.\r\n'
 
-mail_server = 'smtp.gmail.com'
-client_socket = socket(AF_INET, SOCK_STREAM)
+mail_server = 'smtp.gmail.com' # Dung mail server la gmail
+client_socket = socket(AF_INET, SOCK_STREAM) 
+# Tao 1 doi tuong socket,  
+#tham số AF_INET cho biết chúng ta sử dụng IP v4, SOCK_TREAM là dùng giao thức TCP.
+#Ngoài ra còn một số giá trị khác như AF_INET6 là dùng IP v6, 
+#AF_UNIX là chỉ kết nối các ứng dụng trong một máy (không dùng mạng), SOCK_DGRAM là dùng giao thức UDP.
 
 # Client socket.
 # Establish TCP connection with mail server
