@@ -2,15 +2,13 @@ from socket import *
 import ssl
 
 # Email message.
-msg = '\r\n Xin Chao!'
+msg = '\r\n DCM Dat!'
 endmsg = '\r\n.\r\n'
 
 mail_server = 'smtp.gmail.com' # Dung mail server la gmail
 client_socket = socket(AF_INET, SOCK_STREAM) 
 # Tao 1 doi tuong socket,  
 #tham số AF_INET cho biết chúng ta sử dụng IP v4, SOCK_TREAM là dùng giao thức TCP.
-#Ngoài ra còn một số giá trị khác như AF_INET6 là dùng IP v6, 
-#AF_UNIX là chỉ kết nối các ứng dụng trong một máy (không dùng mạng), SOCK_DGRAM là dùng giao thức UDP.
 
 # Client socket.
 # Establish TCP connection with mail server
@@ -33,17 +31,17 @@ if recv1[:3] != '250':
 
 # The hashcode is Username and password of your email. Hash it by b64encode
 
-authCommand = 'AUTH LOGIN cXV5LmRjOThAZ21haWwuY29t\r\n'
-client_socket.send(authCommand.encode())
+usernameCommand = 'AUTH LOGIN ZGF0Lm50MDQwMUBnbWFpbC5jb20=\r\n'
+client_socket.send(usernameCommand.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-appCommand = 'MDIxMTE5OTg=\r\n'
-client_socket.send(appCommand.encode())
+passCommand = 'ZGF0bnQwNDAx\r\n'
+client_socket.send(passCommand.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
 
 # Send MAIL FROM command and print server response.
-mailAdd = 'MAIL FROM: <quy.dc98@gmail.com>\r\n'
+mailAdd = 'MAIL FROM: <dat.nt0401@gmail.com>\r\n'
 client_socket.send(mailAdd.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
@@ -51,7 +49,7 @@ if recv1[:3] != '250': #if the data is not received
 	print ('250 reply not received from server.')
 
 # Send RCPT TO command and print server response.
-rcptAdd = 'RCPT TO: <skyvp98@gmail.com> \r\n'
+rcptAdd = 'RCPT TO: <quy.dc98@gmail.com> \r\n'
 client_socket.send(rcptAdd.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
