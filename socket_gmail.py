@@ -18,7 +18,7 @@ client_socket = ssl.wrap_socket(client_socket)
 client_socket.connect((mail_server, 465))
 recv = client_socket.recv(1024)
 print (recv)
-if recv[:3] != '220':
+if recv[:3] != b'220':
 	print ('220 reply not received from server.')
 
 # Send HELO command and print server response.
@@ -26,7 +26,7 @@ hello_command = 'EHLO localhost\r\n'
 client_socket.send(hello_command.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-if recv1[:3] != '250':
+if recv1[:3] != b'250':
 	print ('250 reply not received from server.')
 
 # Authenticate.
@@ -43,11 +43,11 @@ recv1 = client_socket.recv(1024)
 print (recv1)
 
 # Send MAIL FROM command and print server response.
-mailAdd = 'MAIL FROM: <quy.dc98@gmail.com>\r\n'
+mailAdd = 'MAIL FROM: <skyvp98@gmail.com>\r\n'
 client_socket.send(mailAdd.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-if recv1[:3] != '250': #if the data is not received
+if recv1[:3] != b'250': #if the data is not received
 	print ('250 reply not received from server.')
 
 # Send RCPT TO command and print server response.
@@ -55,7 +55,7 @@ rcptAdd = 'RCPT TO: <quy.dc98@gmail.com> \r\n'
 client_socket.send(rcptAdd.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-if recv1[:3] != '250':
+if recv1[:3] != b'250':
 	print ('250 reply not received from server.')
 
 # Send DATA command and print server response.
@@ -63,7 +63,7 @@ dataCommand = 'DATA\r\n'
 client_socket.send(dataCommand.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-if recv1[:3] != '354':
+if recv1[:3] != b'354':
 	print ('250 reply not received from server.')
 
 
@@ -75,7 +75,7 @@ client_socket.send(msg.encode())
 client_socket.send(endmsg.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-if recv1[:3] != '250':
+if recv1[:3] != b'250':
 	print ('250 reply not received from server.')
 
 # Send QUIT command and get server response.
