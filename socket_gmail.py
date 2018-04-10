@@ -2,6 +2,8 @@ from socket import *
 import ssl
 
 # Email message.
+subject = "Subject: Gmail SMTP Test\r\n"
+# Subject and message cách nhau bởi \r\n\r\n
 msg = '\r\n DCM Dat!'
 endmsg = '\r\n.\r\n'
 
@@ -31,17 +33,17 @@ if recv1[:3] != '250':
 
 # The hashcode is Username and password of your email. Hash it by b64encode
 
-usernameCommand = 'AUTH LOGIN ZGF0Lm50MDQwMUBnbWFpbC5jb20=\r\n'
+usernameCommand = 'AUTH LOGIN cXV5LmRjOThAZ21haWwuY29t\r\n'
 client_socket.send(usernameCommand.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
-passCommand = 'ZGF0bnQwNDAx\r\n'
+passCommand = 'cXV5X2N2cDk4\r\n'
 client_socket.send(passCommand.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
 
 # Send MAIL FROM command and print server response.
-mailAdd = 'MAIL FROM: <dat.nt0401@gmail.com>\r\n'
+mailAdd = 'MAIL FROM: <quy.dc98@gmail.com>\r\n'
 client_socket.send(mailAdd.encode())
 recv1 = client_socket.recv(1024)
 print (recv1)
@@ -64,6 +66,8 @@ print (recv1)
 if recv1[:3] != '354':
 	print ('250 reply not received from server.')
 
+
+client_socket.send(subject.encode())
 # Send message data.
 client_socket.send(msg.encode())
 
